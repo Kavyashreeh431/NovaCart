@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NovaCart</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <link rel="stylesheet" href="../CSS/style.css">
+    <!-- <script src="../JavaScript/script.js"></script> -->
+</head>
+
+<body>
+    <nav>
+        <div class="nav_bar">
+            <ul>
+                <li>
+                    <h4>NovaCart</h4>
+                </li>
+                <li><a href="#home">Shop</a></li>
+                <li><a href="#">About</a></li>
+            </ul>
+
+            <ul>
+                <li style="padding: 3px; border: 1px solid black; border-radius: 2px;"><a href="#"><i
+                            class="fa-solid fa-magnifying-glass"></i></a></li>
+                <li><select name="dd" id="dd">
+                        <a href="#">
+                            <option value="dd_opt">All Categories</option>
+                        </a>
+                        <a href="#">
+                            <option value="dd_opt">Beauty</option>
+                        </a>
+                        <a href="#">
+                            <option value="dd_opt">Electronics</option>
+                        </a>
+                        <a href="#">
+                            <option value="dd_opt">Fashion</option>
+                        </a>
+                        <a href="#">
+                            <option value="dd_opt">Home</option>
+                        </a>
+                        <a href="#">
+                            <option value="dd_opt">Outdoor</option>
+                        </a>
+                        <a href="#">
+                            <option value="dd_opt">Sports</option>
+                        </a>
+                    </select></li>
+                <button>Login</button>
+                <button id="searchBtn">Search</button>
+                <button style="background-color: black; color: white;">Register</button>
+                <li style="padding: 4px; background-color: black; border-radius: 3px;"><a href="#"><i
+                            class="fa-solid fa-bag-shopping" style="color: white;"></i></a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="home">
+        <div class="home-div1">
+            <h4 style="color: aqua;">NEW COLLECTION</h4>
+            <h1 style=" font-size: 2.8em;">Shop reliable products for everyday work and life.</h1>
+            <p>Curated electronics, fashion, home goods, and accessories with a fast local cart experience</p>
+        </div>
+        <div class="home-div2">
+            <div style="border-right: 1px solid rgb(179, 176, 176);padding-right: 20px;">
+                <h3>50</h3>
+                <p>Products</p>
+            </div>
+            <div style="border-right: 1px solid rgb(179, 176, 176);padding-right: 20px;">
+                <h3>5</h3>
+                <p>Pages</p>
+            </div>
+            <div>
+                <h3>24h</h3>
+                <p>Dispatch</p>
+            </div>
+        </div>
+    </section>
+
+   <div class="container">
+
+    <div class="top-bar">
+
+      <div>
+        <h2>Products</h2>
+        <p id="productCount"></p>
+      </div>
+
+      <select id="sortSelect">
+        <option value="default">Featured</option>
+        <option value="low-high">Price Low to High</option>
+        <option value="high-low">Price High to Low</option>
+      </select>
+
+    </div>
+
+    <div class="products" id="productsContainer"></div>
+
+    <div class="pagination" id="pagination"></div>
+
+  </div>
+
+  <script>
+      const apiURL =
+    "https://cdn.jsdelivr.net/gh/adarshahelvar/NovaCart/products.json";
+
+    const productsContainer =
+    document.getElementById("productsContainer");
+
+    const pagination =
+    document.getElementById("pagination");
+
+    const sortSelect =
+    document.getElementById("sortSelect");
+
+    const productCount =
+    document.getElementById("productCount");
+
+    let products = [];
+
+    let currentPage = 1;
+
+    const cardsPerPage = 10;
+
+    // FETCH PRODUCTS
+
+    async function fetchProducts(){
+
+      try{
+
+        const response = await fetch(apiURL);
+
+        products = await response.json();
+
+        renderProducts();
+
+        renderPagination();
+
+      }
+
+      catch(error){
+
+        console.log("Error:", error);
+
+      }
+
+    }
+
+    // RENDER PRODUCTS
+
+    function renderProducts(){
+
+      productsContainer.innerHTML = "";
+
+      let sortedProducts = [...products];
+
+      // SORTING
+
+      if(sortSelect.value === "low-high"){
+
+        sortedProducts.sort((a,b)=>a.price-b.price);
+
+      }
+
+      else if(sortSelect.value === "high-low"){
+
+        sortedProducts.sort((a,b)=>b.price-a.price);
+
+      }
+
+      const start = (currentPage - 1) * cardsPerPage;
+
+      const end = start + cardsPerPage;
+
+      const paginatedProducts =
+      sortedProducts.slice(start,end);
+
+      productCount.innerHTML =
+      `Showing ${start+1}-${Math.min(end,products.length)} of ${products.length} products`;
+
+      // DISPLAY CARDS
+
+      paginatedProducts.forEach(product=>{
+
+        productsContainer.innerHTML += `
+
+          <div class="card">
+
+            <img
+              src="${product.image}"
+              alt="${product.name}"
+            >
+
+            <div class="content">
+
+              <div class="category-rating">
+
+                <span class="category">
+                  ${product.category}
+                </span>
+
+                <span class="rating">
+                  ⭐ ${product.rating}
+                </span>
+
+              </div>
+
+              <h3 class="title">
+                ${product.name}
+              </h3>
+
+              <p class="desc">
+                ${product.description}
+              </p>
+
+              <div class="bottom">
+
+                <h2 class="price">
+                  $${product.price}
+                </h2>
+
+                <button class="btn">
+                  Add
+                </button>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        `;
+
+      });
+
+    }
+
+    // PAGINATION
+
+    function renderPagination(){
+
+      pagination.innerHTML = "";
+
+      const totalPages =
+      Math.ceil(products.length / cardsPerPage);
+
+      // PREVIOUS BUTTON
+
+      const prevBtn =
+      document.createElement("button");
+
+      prevBtn.innerText = "Previous";
+
+      prevBtn.classList.add("page-btn");
+
+      prevBtn.disabled = currentPage === 1;
+
+      prevBtn.addEventListener("click",()=>{
+
+        if(currentPage > 1){
+
+          currentPage--;
+
+          renderProducts();
+
+          renderPagination();
+
+        }
+
+      });
+
+      pagination.appendChild(prevBtn);
+
+      // PAGE NUMBERS
+
+      for(let i=1; i<=totalPages; i++){
+
+        const pageBtn =
+        document.createElement("button");
+
+        pageBtn.innerText = i;
+
+        pageBtn.classList.add("page-btn");
+
+        if(i === currentPage){
+
+          pageBtn.classList.add("active");
+
+        }
+
+        pageBtn.addEventListener("click",()=>{
+
+          currentPage = i;
+
+          renderProducts();
+
+          renderPagination();
+
+        });
+
+        pagination.appendChild(pageBtn);
+
+      }
+
+      // NEXT BUTTON
+
+      const nextBtn =
+      document.createElement("button");
+
+      nextBtn.innerText = "Next";
+
+      nextBtn.classList.add("page-btn");
+
+      nextBtn.disabled =
+      currentPage === totalPages;
+
+      nextBtn.addEventListener("click",()=>{
+
+        if(currentPage < totalPages){
+
+          currentPage++;
+
+          renderProducts();
+
+          renderPagination();
+
+        }
+
+      });
+
+      pagination.appendChild(nextBtn);
+
+    }
+
+    // SORT EVENT
+
+    sortSelect.addEventListener("change",()=>{
+
+      renderProducts();
+
+    });
+
+    // INITIAL FETCH
+
+    fetchProducts();
+  </script>
+
+</body>
+</html>

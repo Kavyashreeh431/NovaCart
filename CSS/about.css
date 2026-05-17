@@ -1,0 +1,132 @@
+*{
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+}
+body{
+    background-color: rgb(232, 237, 238);
+}
+.nav_bar{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    font-size: larger;
+    background-color: white;
+}
+ul{
+    display: flex;
+    list-style: none;
+    justify-content: space-between;
+    gap: 10px;
+    align-content: center;
+}
+button{
+    padding: 4px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+nav a{
+    color: black;
+    text-decoration: none;
+}
+
+.land{
+    background-color: black;
+    color: white;
+    display: flex;
+    height: 400px;
+    align-items: center;
+    padding: 50px;
+    line-height: 35px;
+    gap: 50px;
+    justify-content: center;
+}
+img{
+    border-radius: 5px;
+}
+.cont{
+    margin: 5%;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 20px;
+}
+i{
+    color: rgb(21, 135, 160);
+    padding: 5px 7px;
+    background-color: rgb(220, 233, 237);
+    border-radius: 5px;
+    font-size: x-large;
+}
+select{
+    padding: 4px;
+    background-color: white;
+    border-radius: 4px;
+    border: 1px solid black;
+}
+.standards-section{
+      width:100%;
+      /* max-width:1200px; */
+      background:#f3f3f3;
+      border-radius:12px;
+      padding:35px;
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:40px;
+      flex-wrap:wrap;
+    }
+
+    .left-content{
+      flex:1;
+      min-width:280px;
+    }
+
+    .left-content h2{
+      font-size:34px;
+      color:#111;
+      margin-bottom:15px;
+    }
+
+    .left-content p{
+      font-size:15px;
+      line-height:1.7;
+      color:#666;
+      max-width:600px;
+    }
+
+    .tags{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      max-width:420px;
+    }
+
+    .tag{
+      background:#fff;
+      padding:10px 18px;
+      border-radius:50px;
+      font-size:14px;
+      font-weight:bold;
+      color:#222;
+      box-shadow:0 2px 5px rgba(0,0,0,0.05);
+      transition:0.3s;
+      cursor:pointer;
+    }
+
+    .tag:hover{
+      background:#111;
+      color:#fff;
+      transform:translateY(-2px);
+    }
+
+    @media(max-width:768px){
+
+      .standards-section{
+        flex-direction:column;
+      }
+
+      .left-content h2{
+        font-size:28px;
+      }
+
+    }

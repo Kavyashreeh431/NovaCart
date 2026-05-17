@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Form</title>
+    <link rel="stylesheet" href="../CSS/register.css">
+</head>
+<body>
+      <nav>
+        <div class="nav_bar">
+            <ul>
+                <li>
+                    <h4>NovaCart</h4>
+                </li>
+                <li><a href="#" style="color: grey;">Shop</a></li>
+                <li><a href="#" style="color: grey;">About</a></li>
+            </ul>
+
+            <ul>
+                <button style="background-color: white; color: black;">Login</button>
+                <button style="background-color: black; color: white;">Register</button>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="loginForm">
+        <div class="form_img" style="height: 600px; width: 500px;">
+            <h5 style="color: aqua;">JOIN NOVACART</h5>
+            <h1 style="width: 80%;">Create an account with practical validation and secure local hashing.</h1>
+            <p style="width: 80%; line-height: 25px;">This front-end demo uses browser storage, suitable for showcasing UI and JavaScript flow.</p>
+        </div>
+
+        <div style="width: 400px;">
+            <form action="">
+                <h2>Create account</h2>
+                <p style="color: grey;">Use a strong password to register.</p>
+                <label for="name">Full name</label><br>
+                <input type="text" id="name"><br>
+                <label for="mail">Email address</label><br>
+                <input type="email" id="mail"><br>
+                <label for="pswd">Password</label><br>
+                <input type="password" name="pswd" id="pswd"><br>
+                <p style="color: grey;">Minimum 8 characters with uppercase, lowercase, number and symbol.</p>
+                <label for="cnfm">Confirm Password</label><br>
+                <input type="password" id="cnfm"><br>
+                <input type="checkbox">I agree to the NovaCart account terms. <br>
+                <button>Create Account</button>
+                <div style="text-align: center;">
+                    <span style="color: grey;">Already registered? </span><a href="#">Login</a>
+                </div>
+            </form>
+        </div>
+    </section>
+</body>
+</html>
