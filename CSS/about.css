@@ -20,7 +20,7 @@ ul{
     gap: 10px;
     align-content: center;
 }
-button{
+nav button{
     padding: 4px;
     border-radius: 4px;
     cursor: pointer;
@@ -45,10 +45,11 @@ img{
     border-radius: 5px;
 }
 .cont{
-    margin: 5%;
+    margin:5% 10%;
     display: grid;
     grid-template-columns: repeat(3,1fr);
     gap: 20px;
+    align-content: center;
 }
 i{
     color: rgb(21, 135, 160);
@@ -64,8 +65,8 @@ select{
     border: 1px solid black;
 }
 .standards-section{
-      width:100%;
-      /* max-width:1200px; */
+      /* width:100%; */
+      max-width:1200px;
       background:#f3f3f3;
       border-radius:12px;
       padding:35px;
@@ -74,6 +75,7 @@ select{
       align-items:flex-start;
       gap:40px;
       flex-wrap:wrap;
+      margin-left: 10%;
     }
 
     .left-content{
