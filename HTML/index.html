@@ -29,7 +29,7 @@
 
             <ul>
                 <li id="search">
-  <input type="text" placeholder="Search products..." />
+  <input type="text" placeholder="Search products..." class="searchInput"/>
   <i class="fa-solid fa-magnifying-glass search-icon"></i>
 </li>
                 <li> <select id="categorySelect" style="width: 160px;">
@@ -158,6 +158,9 @@
     </div>
 
     <script>
+        
+
+        
         const apiURL =
     "https://cdn.jsdelivr.net/gh/adarshahelvar/NovaCart/products.json";
 
@@ -428,6 +431,53 @@ function renderPagination() {
 sortSelect.addEventListener("change", () => {
 
     renderProducts();
+
+});
+
+// ================= LIVE SEARCH FILTER =================
+
+const searchInput =
+    document.querySelector(".searchInput");
+
+searchInput.addEventListener("input", () => {
+
+    const searchValue =
+        searchInput.value
+        .toLowerCase()
+        .trim();
+
+    // IF INPUT EMPTY → SHOW NORMAL PAGINATION
+    if (searchValue === "") {
+
+        products = [...allProducts];
+
+        currentPage = 1;
+
+        renderProducts();
+
+        renderPagination();
+
+        return;
+
+    }
+
+    // FILTER USING STARTING LETTERS OF TITLE
+    products = allProducts.filter(product =>
+
+        product.name
+            .toLowerCase()
+            .startsWith(searchValue)
+
+    );
+
+    // RESET PAGE
+    currentPage = 1;
+
+    // SHOW FILTERED PRODUCTS
+    renderProducts();
+
+    // REMOVE PAGINATION DURING SEARCH
+    pagination.innerHTML = "";
 
 });
 

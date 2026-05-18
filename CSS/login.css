@@ -32,15 +32,16 @@ nav a{
 }
 .loginForm{
     display: flex;
-    gap: 70px;
-    align-items: center;
-    margin-left: 20%;
+    justify-content:space-evenly ;
+    column-gap: 50px;
+    margin-left: 22%;
     line-height: 30px;
     border: 1px solid rgb(212, 211, 211);
     margin-right: 20%;
     margin-top: 3%;
     background-color: white;
     border-radius: 10px;
+    align-items: center;
 }
 a{
     color: rgb(100, 99, 99);
@@ -67,4 +68,24 @@ input[type='email'],[type='password']{
     padding-top: 40%;
     padding-left: 30px;
 
+}
+
+@media screen and (max-width:768px) {
+    .loginForm{
+        flex-direction: column;
+        margin-left: 10%;
+        margin-right: 10%;
+        padding-bottom: 10px;
+        height: 80%;
+    }
+}
+
+@media screen and (max-width:1044px) {
+    .loginForm{
+        flex-direction: column;
+        margin-left: 10%;
+        margin-right: 10%;
+        padding-bottom: 10px;
+        height: 80%;
+    }
 }

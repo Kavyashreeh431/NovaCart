@@ -87,6 +87,7 @@ nav a{
     display: flex;
     justify-content: space-around;
     padding: 50px;
+    width: 100%;
     box-shadow: inset 200px 2px 250px black, inset -100px -2px 200px black;
 }
 .home-div1{
@@ -102,6 +103,8 @@ nav a{
     background-color: rgba(46, 45, 45, 0.4);
     margin-top: 10%;
 }
+
+
 .cards{
     display: flex;
     margin: 30px;
@@ -514,3 +517,15 @@ nav a{
     margin-top: 100px;
 }
 
+@media  screen and (max-width:768px) {
+  .nav_bar{
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .home{
+    flex-direction: column;
+    text-align: center;
+    padding: 30px;
+  }
+}
